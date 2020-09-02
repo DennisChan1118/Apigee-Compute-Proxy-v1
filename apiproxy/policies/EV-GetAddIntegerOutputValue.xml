@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetAddIntegerOutputValue">
+    <DisplayName>EV-GetAddIntegerOutputValue</DisplayName>
+    <JSONPayload>
+        <Variable name="answer">
+            <JSONPath>$.Envelope.Body.AddIntegerResponse.AddIntegerResult</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <VariablePrefix>cv.output</VariablePrefix>
+    <Source clearPayload="false">response</Source>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

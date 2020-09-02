@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MessageLogging async="false" continueOnError="false" enabled="true" name="Message-Logging">
+    <DisplayName>Message-Logging</DisplayName>
+    <File>
+        <Message variablePrefix="%" variableSuffix="#">[%system.time.year#-%system.time.month#-%system.time.day#T%system.time.hour#:%system.time.minute#:%system.time.second#.%system.time.millisecond#Z] tag="apigee-log" tag="%organization.name#" tag="%environment.name#" tag="%apiproxy.name#" tag="Reversion-%apiproxy.revision#" tag="%apigee.apiproduct.name#" tag="%apigee.developer.app.name#"
+{
+    "messageId":"%messageid#",
+    "statusCode":%message.status.code#,
+    "statusReason":"%message.reason.phrase#",
+    "messageContent":"%message.content#"
+}
+</Message>
+        <FormatMessage>true</FormatMessage>
+        <FileName>error.log</FileName>
+        <FileRotationOptions rotateFileOnStartup="true">
+            <FileRotationType>TIME_SIZE</FileRotationType>
+            <MaxFileSizeInMB>10</MaxFileSizeInMB>
+            <MaxFilesToRetain>10</MaxFilesToRetain>
+            <RotationFrequency unit="minute">10</RotationFrequency>
+        </FileRotationOptions>
+    </File>
+</MessageLogging>

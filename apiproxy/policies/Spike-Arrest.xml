@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SpikeArrest async="false" continueOnError="false" enabled="true" name="Spike-Arrest">
+    <DisplayName>Spike-Arrest</DisplayName>
+    <Identifier ref="request.queryparam.apikey"/>
+    <Rate ref="verifyapikey.Verify-API-Key.apiproduct.spike-arrest"/>
+</SpikeArrest>

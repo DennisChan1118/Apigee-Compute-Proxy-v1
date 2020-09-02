@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetAddIntegerInputValue">
+    <DisplayName>EV-GetAddIntegerInputValue</DisplayName>
+    <JSONPayload>
+        <Variable name="arg1" type="integer">
+            <JSONPath>$.arg1</JSONPath>
+        </Variable>
+        <Variable name="arg2" type="integer">
+            <JSONPath>$.arg2</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <VariablePrefix>cv.input</VariablePrefix>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

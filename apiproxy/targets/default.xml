@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="default">
+    <Description/>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>AM-DisableCopyPathSuffix</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>XTJ-SOAPtoJSONResponse</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>RC-CacheRespones</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows/>
+    <HTTPTargetConnection>
+        <Properties/>
+        <LoadBalancer>
+            <Server name="mock-soap-target-server"/>
+            <MaxFailures>5</MaxFailures>
+        </LoadBalancer>
+        <Path>{cv.target.basepath}</Path>
+        <HealthMonitor>
+            <IsEnabled>true</IsEnabled>
+            <IntervalInSec>5</IntervalInSec>
+            <TCPMonitor>
+                <ConnectTimeoutInSec>10</ConnectTimeoutInSec>
+            </TCPMonitor>
+        </HealthMonitor>
+    </HTTPTargetConnection>
+</TargetEndpoint>

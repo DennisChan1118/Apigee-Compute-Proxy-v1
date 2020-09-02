@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Access-Control</Name>
+            </Step>
+            <Step>
+                <Name>Verify-API-Key</Name>
+            </Step>
+            <Step>
+                <Name>BasicAuthentication</Name>
+            </Step>
+            <Step>
+                <Name>Spike-Arrest</Name>
+            </Step>
+            <Step>
+                <Name>Quota</Name>
+            </Step>
+            <Step>
+                <Name>AM-RemoveAPIKey</Name>
+            </Step>
+            <Step>
+                <Name>RC-CacheRespones</Name>
+            </Step>
+            <Step>
+                <Name>KVM-GetProxyConfig</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <PostClientFlow>
+        <Request/>
+        <Response>
+            <Step>
+                <Name>Message-Logging</Name>
+            </Step>
+        </Response>
+    </PostClientFlow>
+    <Flows>
+        <Flow name="AddInteger">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>EV-GetAddIntegerInputValue</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAddIntegerSoapRequest</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>EV-GetAddIntegerOutputValue</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAddIntegerJsonResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/add") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="CatchAll">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>RF-Raise404NotFound</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/v1/compute</BasePath>
+        <Properties/>
+        <VirtualHost>default</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

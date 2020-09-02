@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetAddIntegerSoapRequest">
+    <DisplayName>AM-SetAddIntegerSoapRequest</DisplayName>
+    <Set>
+        <Verb>POST</Verb>
+        <Payload contentType="text/xml"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s="http://www.w3.org/2001/XMLSchema">
+                <SOAP-ENV:Header/>
+                <SOAP-ENV:Body>
+                    <AddInteger xmlns="http://tempuri.org">
+                        <Arg1>{cv.input.arg1}</Arg1>
+                        <Arg2>{cv.input.arg2}</Arg2>
+                    </AddInteger>
+                </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>]]></Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>
