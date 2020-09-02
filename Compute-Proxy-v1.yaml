@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  description: Compute API proxy information.
+  title: Compute-Proxy-v1
+  version: '1.0'
+  termsOfService: 'http://example.com/about/terms'
+  contact:
+    name: API Docs
+    url: 'http://example.com/contact'
+    email: apis-eng@apigee.com
+  license:
+    name: MIT
+    url: 'https://opensource.org/licenses/MIT'
+servers:
+  - url: 'https://{virtualHostIP}:{virtualHostPort}/v1/compute'
+    variables:
+      virtualHostIP:
+        description: IP of virtual host.
+        default: virtual-host-ip
+      virtualHostPort:
+        description: Port of virtual host.
+        default: virtual-host-port
+paths:
+  /add:
+    post:
+      description: <p>Add</p> two integers.
+      summary: Add integer.
+      operationId: AddInteger
+      tags:
+        - Compute
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: Two integer.
+              type: object
+              properties:
+                arg1:
+                  type: string
+                  description: First integer to be compute.
+                arg2:
+                  type: string
+                  description: Second integer to be compute.
+        description: Two integers to be compute.
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=utf-8:
+              schema:
+                description: Compute result.
+                type: object
+                properties:
+                  answer:
+                    type: string
+                    description: Answer of calculation.
+      parameters: []
+components:
+  schemas: {}
+  links: {}
+  callbacks: {}
+security: []
+tags: []
