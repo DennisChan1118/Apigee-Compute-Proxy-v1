@@ -11,7 +11,7 @@
 }
 </Message>
         <FormatMessage>true</FormatMessage>
-        <FileName>error.log</FileName>
+        <FileName>api-proxy.log</FileName>
         <FileRotationOptions rotateFileOnStartup="true">
             <FileRotationType>TIME_SIZE</FileRotationType>
             <MaxFileSizeInMB>10</MaxFileSizeInMB>
