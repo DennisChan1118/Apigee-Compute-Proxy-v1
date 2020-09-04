@@ -11,9 +11,6 @@
                 <Name>Verify-API-Key</Name>
             </Step>
             <Step>
-                <Name>BasicAuthentication</Name>
-            </Step>
-            <Step>
                 <Name>Spike-Arrest</Name>
             </Step>
             <Step>
