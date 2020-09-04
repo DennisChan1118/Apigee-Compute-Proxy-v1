@@ -6,9 +6,9 @@ info:
 host: 10.140.0.3:9001
 schemes:
   - http
-basePath: /mock-soap-api
+basePath: /v1/compute
 securityDefinitions:
-  APIKeyQueryParam:
+  APIKeyQuery:
     type: apiKey
     in: query
     name: apikey
@@ -26,7 +26,7 @@ paths:
       operationId: AddInteger
       description: 'Send two integers and view the sum of them in JSON format.<p>The request payload can be specified using one of the following format: application/json.'
       security:
-        - APIKeyQueryParam: []
+        - APIKeyQuery: []
         - basicAuth: []
       parameters:
         - name: integers
