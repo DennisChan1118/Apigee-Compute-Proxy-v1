@@ -6,7 +6,7 @@ info:
 host: 10.140.0.3:9001
 schemes:
   - http
-basePath: /v1/compute
+basePath: /mock-soap-api
 securityDefinitions:
   APIKeyQueryParam:
     type: apiKey
