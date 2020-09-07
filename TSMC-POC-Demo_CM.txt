@@ -74,4 +74,55 @@ curl -X POST 'http://10.140.0.3:9001/v1/compute/add' \
 
 2. Add Payload Transform Policy
 
+    <Options>
+        <NamespaceBlockName>#namespaces</NamespaceBlockName>
+        <DefaultNamespaceNodeName>&amp;</DefaultNamespaceNodeName>
+        <NamespaceSeparator>:</NamespaceSeparator>
+    </Options>
 
+----------
+
+JSON Request:
+curl -X POST 'http://10.140.0.3:9001/v1/compute/add' \
+-H 'Content-Type: application/json' \
+-H 'SOAPAction: http://tempuri.org/SOAP.Demo.AddInteger' \
+-H 'Authorization: Basic dGVzdHVzZXI6dGVzdHB3ZA==' \
+-d '{
+    "SOAP-ENV:Envelope": {
+        "#namespaces": {
+            "SOAP-ENV": "http://schemas.xmlsoap.org/soap/envelope/",
+            "xsi": "http://www.w3.org/2001/XMLSchema-instance",
+            "s": "http://www.w3.org/2001/XMLSchema"
+        },
+        "SOAP-ENV:Header": {},
+        "SOAP-ENV:Body": {
+            "AddInteger": {
+                "#namespaces": {
+                    "$default": "http://tempuri.org"
+                },
+                "Arg1": 2,
+                "Arg2": 3
+            }
+        }
+    }
+}'
+
+JSON Response:
+{
+    "SOAP-ENV:Envelope": {
+        "#namespaces": {
+            "SOAP-ENV": "http:\/\/schemas.xmlsoap.org\/soap\/envelope\/",
+            "xsi": "http:\/\/www.w3.org\/2001\/XMLSchema-instance",
+            "s": "http:\/\/www.w3.org\/2001\/XMLSchema"
+        },
+        "SOAP-ENV:Header": {},
+        "SOAP-ENV:Body": {
+            "AddIntegerResponse": {
+                "#namespaces": {
+                    "&": "http:\/\/tempuri.org"
+                },
+                "AddIntegerResult": "5"
+            }
+        }
+    }
+}
