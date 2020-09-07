@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   description: 'An API for two integer calculation.'
   version: 1.0.0
-  title: Compute-Proxy-v1
+  title: Demo-Compute-Proxy-v1
 host: 10.217.222.70:9001
 schemes:
   - http
