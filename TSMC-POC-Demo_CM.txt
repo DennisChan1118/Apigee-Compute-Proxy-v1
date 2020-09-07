@@ -1,0 +1,77 @@
+==========
+
+0. Test Mock-Soap-API
+
+curl -X POST 'http://10.140.0.3:9001/mock-soap-api' \
+-H 'Content-Type: text/xml' \
+-H 'SOAPAction: http://tempuri.org/SOAP.Demo.AddInteger' \
+-H 'Authorization: Basic dGVzdHVzZXI6dGVzdHB3ZA==' \
+-d '<SOAP-ENV:Envelope
+    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:s="http://www.w3.org/2001/XMLSchema">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <AddInteger xmlns="http://tempuri.org">
+            <Arg1>2</Arg1>
+            <Arg2>3</Arg2>
+        </AddInteger>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>'
+
+==========
+
+1. Create API Proxy
+
+Demo-Compute-Proxy-v1
+/v1/compute
+http://10.140.0.3:9001/mock-soap-api
+
+----------
+
+    <Flows>
+        <Flow name="AddInteger">
+            <Description>Send two integers and view the sum of them.</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/add") and (request.verb = "POST")</Condition>
+        </Flow>
+    </Flows>
+
+----------
+
+AM-DisableCopyPathSuffix
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-DisableCopyPathSuffix">
+    <DisplayName>AM-DisableCopyPathSuffix</DisplayName>
+    <AssignVariable>
+        <Name>target.copy.pathsuffix</Name>
+        <Value>false</Value>
+    </AssignVariable>
+</AssignMessage>
+
+----------
+
+curl -X POST 'http://10.140.0.3:9001/v1/compute/add' \
+-H 'Content-Type: text/xml' \
+-H 'SOAPAction: http://tempuri.org/SOAP.Demo.AddInteger' \
+-H 'Authorization: Basic dGVzdHVzZXI6dGVzdHB3ZA==' \
+-d '<SOAP-ENV:Envelope
+    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:s="http://www.w3.org/2001/XMLSchema">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <AddInteger xmlns="http://tempuri.org">
+            <Arg1>2</Arg1>
+            <Arg2>3</Arg2>
+        </AddInteger>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>'
+
+==========
+
+2. Add Payload Transform Policy
+
+
