@@ -211,3 +211,54 @@ http://10.140.0.3:9001/basicauth
 http://10.217.222.70:9001/basicauth
 
 ==========
+
+6. Create a Proxy for Message Queue
+
+http://10.140.0.21:8161/admin/queues.jsp
+
+----------
+
+curl -X POST 'http://{your host}:{your port}/v1/queue/send' \
+-H 'Content-Type: text/plain' \
+-d 'Hello!!!'
+
+----------
+
+mq-configs
+host 10.140.0.21
+port 61616
+queue demo-queue
+replytoqueue demo-replyto-queue
+
+----------
+
+KVM-GetMQConfigs
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-GetMQConfigs" mapIdentifier="mq-configs">
+    <DisplayName>KVM-GetMQConfigs</DisplayName>
+    <ExpiryTimeInSecs>-1</ExpiryTimeInSecs>
+    <Get assignTo="cv.mqconfigs.host" index="1">
+        <Key>
+            <Parameter>host</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="cv.mqconfigs.port" index="1">
+        <Key>
+            <Parameter>port</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="cv.mqconfigs.queue" index="1">
+        <Key>
+            <Parameter>queue</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="cv.mqconfigs.replytoqueue" index="1">
+        <Key>
+            <Parameter>replytoqueue</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>
+
+==========
