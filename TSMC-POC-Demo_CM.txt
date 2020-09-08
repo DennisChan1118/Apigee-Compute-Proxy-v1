@@ -17,6 +17,13 @@ curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer'
     "Arg2": 3
 }'
 
+curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo-sample/integer' \
+-H 'Content-Type: application/json' \
+-d '{
+    "Arg1": 2,
+    "Arg2": 3
+}'
+
 JSON Response:
 
 {
@@ -48,6 +55,13 @@ www.crcind.com
 JSON Request:
 
 curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer' \
+-H 'Content-Type: application/json' \
+-d '{
+    "Arg1": 2,
+    "Arg2": 3
+}'
+
+curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo-sample/integer' \
 -H 'Content-Type: application/json' \
 -d '{
     "Arg1": 2,
@@ -103,6 +117,20 @@ curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer'
     "Arg2": 8
 }'
 
+curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo-sample/integer' \
+-H 'Content-Type: application/json' \
+-d '{
+    "Arg1": 2,
+    "Arg2": 3
+}'
+
+curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo-sample/integer' \
+-H 'Content-Type: application/json' \
+-d '{
+    "Arg1": 2,
+    "Arg2": 8
+}'
+
 ==========
 
 4. Add Rate limit and API Key Verify Policies
@@ -122,6 +150,13 @@ curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer'
 ----------
 
 curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer' \
+-H 'Content-Type: application/json' \
+-d '{
+    "Arg1": 2,
+    "Arg2": 3
+}'
+
+curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo-sample/integer' \
 -H 'Content-Type: application/json' \
 -d '{
     "Arg1": 2,
@@ -158,6 +193,20 @@ AM-RemoveAPIKey
 ----------
 
 curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer' \
+-H 'Content-Type: application/json' \
+-d '{
+    "Arg1": 2,
+    "Arg2": 3
+}'
+
+curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo-sample/integer' \
+-H 'Content-Type: application/json' \
+-d '{
+    "Arg1": 2,
+    "Arg2": 3
+}'
+
+curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo-sample/integer?apikey=AGX4Q9b01GuOGbzu0djlSrfEibRK7N1q' \
 -H 'Content-Type: application/json' \
 -d '{
     "Arg1": 2,
