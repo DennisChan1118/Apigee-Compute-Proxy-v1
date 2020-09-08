@@ -166,4 +166,44 @@ curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer'
 
 ==========
 
+5. Support Basic Authentication
 
+http://msapi-9lab.apigeepoc.tk:8080/v1/organizations/demoorg
+http://10.217.222.76:8080/v1/organizations/demoorg
+
+----------
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-GetCredential" mapIdentifier="ba-credential">
+    <DisplayName>KVM-GetCredential</DisplayName>
+    <Get assignTo="private.ba.username" index="1">
+        <Key>
+            <Parameter>ba.username</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="private.ba.password" index="1">
+        <Key>
+            <Parameter>ba.password</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>
+
+----------
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BasicAuthentication async="false" continueOnError="false" enabled="true" name="Basic-Authentication">
+    <DisplayName>Basic Authentication</DisplayName>
+    <Operation>Encode</Operation>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <User ref="private.ba.username"/>
+    <Password ref="private.ba.password"/>
+    <AssignTo createNew="false">request.header.Authorization</AssignTo>
+</BasicAuthentication>
+
+----------
+
+http://10.140.0.3:9001/basicauth
+http://10.217.222.70:9001/basicauth
+
+==========
