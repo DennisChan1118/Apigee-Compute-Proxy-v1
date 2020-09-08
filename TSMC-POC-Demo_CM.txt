@@ -218,7 +218,7 @@ http://10.140.0.21:8161/admin/queues.jsp
 
 ----------
 
-curl -X POST 'http://{your host}:{your port}/v1/queue/send' \
+curl -X POST 'http://10.140.0.3:9001/v1/queue/send' \
 -H 'Content-Type: text/plain' \
 -d 'Hello!!!'
 
