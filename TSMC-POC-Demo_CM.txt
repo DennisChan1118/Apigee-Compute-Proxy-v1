@@ -105,4 +105,65 @@ curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer'
 
 ==========
 
+4. Add Rate limit and API Key Verify Policies
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Quota async="false" continueOnError="false" enabled="true" name="Quota" type="calendar">
+    <DisplayName>Quota</DisplayName>
+    <Properties/>
+    <Allow count="5"/>
+    <Interval ref="request.header.quota_count">1</Interval>
+    <Distributed>true</Distributed>
+    <Synchronous>true</Synchronous>
+    <TimeUnit ref="request.header.quota_timeout">minute</TimeUnit>
+    <StartTime>2020-9-7 12:00:00</StartTime>
+</Quota>
+
+----------
+
+curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer' \
+-H 'Content-Type: application/json' \
+-d '{
+    "Arg1": 2,
+    "Arg2": 3
+}'
+
+----------
+
+Verify-API-Key
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyAPIKey async="false" continueOnError="false" enabled="true" name="Verify-API-Key">
+    <DisplayName>Verify-API-Key</DisplayName>
+    <Properties/>
+    <APIKey ref="request.queryparam.apikey"/>
+</VerifyAPIKey>
+
+----------
+
+AM-RemoveAPIKey
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-RemoveAPIKey">
+    <DisplayName>AM-RemoveAPIKey</DisplayName>
+    <Remove>
+        <QueryParams>
+            <QueryParam name="apikey"/>
+        </QueryParams>
+    </Remove>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
+
+----------
+
+curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer' \
+-H 'Content-Type: application/json' \
+-d '{
+    "Arg1": 2,
+    "Arg2": 3
+}'
+
+==========
+
 
