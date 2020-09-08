@@ -63,3 +63,46 @@ JSON Response:
 }
 
 ==========
+
+3. Response Caching
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ResponseCache async="false" continueOnError="false" enabled="true" name="Response-Cache">
+    <DisplayName>Response Cache</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <Prefix/>
+        <KeyFragment ref="request.uri" type="string"/>
+        <KeyFragment ref="request.content" type="string"/>
+    </CacheKey>
+    <Scope>Exclusive</Scope>
+    <ExpirySettings>
+        <ExpiryDate/>
+        <TimeOfDay/>
+        <TimeoutInSec ref="">15</TimeoutInSec>
+    </ExpirySettings>
+    <SkipCacheLookup/>
+    <SkipCachePopulation/>
+</ResponseCache>
+
+----------
+
+JSON Request:
+
+curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer' \
+-H 'Content-Type: application/json' \
+-d '{
+    "Arg1": 2,
+    "Arg2": 3
+}'
+
+curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer' \
+-H 'Content-Type: application/json' \
+-d '{
+    "Arg1": 2,
+    "Arg2": 8
+}'
+
+==========
+
+
