@@ -10,7 +10,44 @@ https://www.crcind.com/csp/samples/SOAP.Demo.cls?wsdl
 
 JSON Request:
 
-curl -X POST 'https://dennischan-29880-eval-prod.apigee.net/v1/soapdemo/integer' \
+curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer' \
+-H 'Content-Type: application/json' \
+-d '{
+    "Arg1": 2,
+    "Arg2": 3
+}'
+
+JSON Response:
+
+{
+    "AddIntegerResponse": {
+        "AddIntegerResult": "5"
+    }
+}
+
+==========
+
+2. Load Balancing Target Server
+
+soap-demo-backend
+www.crcind.com
+443
+
+----------
+
+    <HTTPTargetConnection>
+        <Properties/>
+        <LoadBalancer>
+            <Server name="soap-demo-backend"/>
+        </LoadBalancer>
+        <Path>/csp/samples/SOAP.Demo.cls</Path>
+    </HTTPTargetConnection>
+
+----------
+
+JSON Request:
+
+curl -X POST 'https://dennischan-29880-eval-test.apigee.net/v1/soapdemo/integer' \
 -H 'Content-Type: application/json' \
 -d '{
     "Arg1": 2,
